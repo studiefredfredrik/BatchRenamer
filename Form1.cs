@@ -89,6 +89,24 @@ namespace Batch_Renamer
             }
             filenameList = new List<string>();
             dirnameList = new List<string>();
+            // refresh files list
+            richTextBox1.Clear();
+            filenameList.Clear();
+            dirnameList.Clear();
+
+            filenameList.AddRange(Directory.EnumerateFiles(textBox1.Text));
+            dirnameList.AddRange(Directory.EnumerateDirectories(textBox1.Text));
+            foreach (string s in filenameList)
+            {
+                richTextBox1.AppendText(s);
+                richTextBox1.AppendText("\n");
+            }
+            foreach (string s in dirnameList)
+            {
+                richTextBox1.AppendText(s);
+                richTextBox1.AppendText("\n");
+            }
+            // end refresh
             MessageBox.Show("All operations executed!");
         }
     }
