@@ -23,25 +23,43 @@ namespace Batch_Renamer
             dirnameList = new List<string>();
         }
 
+        private string replaceInvalidChars(string stringSet)
+        {
+            string invalid = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
+
+            foreach (char c in invalid)
+            {
+                stringSet = stringSet.Replace(c.ToString(), "");
+            }
+            return stringSet;
+        }
+
         private void btnList_Click(object sender, EventArgs e)
         {
             richTextBox1.Clear();
             filenameList.Clear();
             dirnameList.Clear();
 
-            filenameList.AddRange(Directory.EnumerateFiles(textBox1.Text));
-            dirnameList.AddRange(Directory.EnumerateDirectories(textBox1.Text));
+            FolderBrowserDialog brws = new FolderBrowserDialog();
+            DialogResult rslt = brws.ShowDialog();
+            if (rslt == DialogResult.OK)
+            {
+                textBox1.Text = brws.SelectedPath;
+
+                filenameList.AddRange(Directory.EnumerateFiles(textBox1.Text));
+                dirnameList.AddRange(Directory.EnumerateDirectories(textBox1.Text));
 
 
-            foreach (string s in filenameList)
-            {
-                richTextBox1.AppendText(s);
-                richTextBox1.AppendText("\n");
-            }
-            foreach (string s in dirnameList)
-            {
-                richTextBox1.AppendText(s);
-                richTextBox1.AppendText("\n");
+                foreach (string s in filenameList)
+                {
+                    richTextBox1.AppendText(s);
+                    richTextBox1.AppendText("\n");
+                }
+                foreach (string s in dirnameList)
+                {
+                    richTextBox1.AppendText(s);
+                    richTextBox1.AppendText("\n");
+                }
             }
         }
 
@@ -54,6 +72,7 @@ namespace Batch_Renamer
                 if (oldName.Contains(textBox2.Text))
                 {
                     string newName = oldName.Replace(textBox2.Text, textBox3.Text);
+                    newName = replaceInvalidChars(newName); 
                     File.Move(path + "\\" + oldName, path + "\\" + newName);
                 }
             }
@@ -64,11 +83,13 @@ namespace Batch_Renamer
                 if (dirNameOld.Contains(textBox2.Text))
                 {
                     string dirNameNew = dirNameOld.Replace(textBox2.Text, textBox3.Text);
+                    dirNameNew = replaceInvalidChars(dirNameNew); 
                     Directory.Move(path + "\\" + dirNameOld, path + "\\" + dirNameNew);
                 }
             }
             filenameList = new List<string>();
             dirnameList = new List<string>();
+            MessageBox.Show("All operations executed!");
         }
     }
 }

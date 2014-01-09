@@ -41,11 +41,11 @@
             // 
             // btnList
             // 
-            this.btnList.Location = new System.Drawing.Point(220, 67);
+            this.btnList.Location = new System.Drawing.Point(193, 67);
             this.btnList.Name = "btnList";
-            this.btnList.Size = new System.Drawing.Size(75, 23);
+            this.btnList.Size = new System.Drawing.Size(102, 23);
             this.btnList.TabIndex = 0;
-            this.btnList.Text = "List files";
+            this.btnList.Text = "Select folder...";
             this.btnList.UseVisualStyleBackColor = true;
             this.btnList.Click += new System.EventHandler(this.btnList_Click);
             // 
@@ -91,11 +91,11 @@
             // 
             // btnRun
             // 
-            this.btnRun.Location = new System.Drawing.Point(220, 176);
+            this.btnRun.Location = new System.Drawing.Point(193, 176);
             this.btnRun.Name = "btnRun";
-            this.btnRun.Size = new System.Drawing.Size(75, 23);
+            this.btnRun.Size = new System.Drawing.Size(102, 23);
             this.btnRun.TabIndex = 6;
-            this.btnRun.Text = "Rename";
+            this.btnRun.Text = "Rename ";
             this.btnRun.UseVisualStyleBackColor = true;
             this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
             // 
@@ -119,7 +119,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(862, 261);
+            this.ClientSize = new System.Drawing.Size(833, 265);
             this.Controls.Add(this.btnRun);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -129,8 +129,9 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.btnList);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Batch Renamer";
             this.ResumeLayout(false);
             this.PerformLayout();
 
